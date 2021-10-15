@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NbgMovies.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace NbgMovies
         public void ConfigureServices(IServiceCollection services)
         {
 
-
+            services.AddDbContext<MovieDbContext, MovieDbContext>();
             services.AddRazorPages();
         }
 

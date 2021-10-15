@@ -9,20 +9,20 @@ using NbgMovies.Model;
 
 namespace NbgMovies.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModelMovies : PageModel
     {
         private readonly NbgMovies.Model.MovieDbContext _context;
 
-        public IndexModel(NbgMovies.Model.MovieDbContext context)
+        public IndexModelMovies(NbgMovies.Model.MovieDbContext context)
         {
             _context = context;
         }
 
-        public IList<Actor> Actor { get;set; }
+        public IList<Movie> Movie { get;set; }
 
         public async Task OnGetAsync()
         {
-            Actor = await _context.Actors.ToListAsync();
+            Movie = await _context.Movies.ToListAsync();
         }
     }
 }

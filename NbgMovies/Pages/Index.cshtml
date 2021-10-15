@@ -1,10 +1,11 @@
 ﻿@page
-@model IndexModel
+@model NbgMovies.Pages.IndexModelInitial
 @{
-    ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<h1>Initial page of movie project</h1>
+ 
+
+<a asp-page="./ListActors">Actors</a><br />
+<a asp-page="./ListMovies">Movies</a>

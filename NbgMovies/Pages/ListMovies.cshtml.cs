@@ -22,7 +22,7 @@ namespace NbgMovies.Pages
 
         public async Task OnGetAsync()
         {
-            Movie = await _context.Movies.ToListAsync();
+            Movie = await _context.Movies.Include(movie=> movie.Actors).ToListAsync();
         }
     }
 }

@@ -37,7 +37,7 @@ namespace NbgMovies.Pages
             _context.Actors.Add(Actor);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./ListActors");
         }
     }
 }

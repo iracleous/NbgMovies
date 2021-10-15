@@ -12,6 +12,11 @@ namespace NbgMovies.Model
         public string LastName { get; set; }
         public List<Movie> Movies { get; set; }
 
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
+
     }
 
 

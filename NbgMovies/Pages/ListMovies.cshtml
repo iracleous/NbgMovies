@@ -8,7 +8,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="CreateMovie">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -22,6 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Movie[0].Genre)
             </th>
+            <th> Actors</th>
             <th></th>
         </tr>
     </thead>
@@ -37,6 +38,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Genre)
             </td>
+
+            <td>
+                @if (item.Actors.Count > 0)
+                {
+                    string actors = null;
+                    @foreach (var actor in item.Actors)
+                    {
+                        actors = actors + $", {actor.FirstName} {actor.LastName}";
+                    }
+                    @actors.Substring(2)
+                }
+
+
+            </td>
+
             <td>
                 <a asp-page="./EditMovie" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./DetailsMovie" asp-route-id="@item.Id">Details</a> |

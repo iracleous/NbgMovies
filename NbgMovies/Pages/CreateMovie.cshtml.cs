@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using NbgMovies.Model;
 
 namespace NbgMovies.Pages
@@ -18,8 +19,17 @@ namespace NbgMovies.Pages
             _context = context;
         }
 
-        public IActionResult OnGet()
+        [BindProperty] public List<int> ActorIds { get; set; }
+        public List<SelectListItem> ActorSelectList { get; set; }
+
+
+        public async Task<IActionResult> OnGetAsync()
         {
+
+            ActorSelectList = await
+                _context.Actors.Select(actor => new SelectListItem()
+                { Value = actor.Id.ToString(), Text = actor.ToString() }).ToListAsync();
+       
             return Page();
         }
 
@@ -34,10 +44,14 @@ namespace NbgMovies.Pages
                 return Page();
             }
 
+
+            Movie.Actors = await _context.Actors.Where(a => ActorIds.Contains(a.Id)).ToListAsync();
+
+
             _context.Movies.Add(Movie);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./ListMovies");
         }
     }
 }
